@@ -11,7 +11,7 @@ const getImageUrl = (name) => {
 <template>
   <div class="card">
     <div class="image-container">
-      <img :src="getImageUrl(project.image)" :alt="project.title" class="project-img" />
+      <img :src="getImageUrl(project.images[0])" :alt="project.title" class="project-img" />
       <div class="overlay">
         <div class="overlay-links">
           <router-link :to="`/project/${project.id}`" class="view-btn">

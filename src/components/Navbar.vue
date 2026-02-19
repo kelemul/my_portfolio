@@ -16,6 +16,10 @@
       <li><router-link :to="{ path: '/', hash: '#skills' }" @click="closeMenu">Skills</router-link></li>
       <li><router-link :to="{ path: '/', hash: '#projects' }" @click="closeMenu">Projects</router-link></li>
       <li><router-link :to="{ path: '/', hash: '#contact' }" @click="closeMenu" class="cta-btn">Contact Me</router-link></li>
+    
+    <li>
+    <a href="/Kelemu_Leykun_CV.pdf" download class="nav-cv">CV</a>
+  </li>
     </ul>
   </nav>
 </template>
@@ -40,6 +44,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 </script>
 
 <style scoped>
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -139,5 +144,18 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
   .nav-links.active {
     clip-path: circle(150% at 100% 0); /* Cool reveal animation end */
   }
+}
+.nav-cv {
+  border: 1px solid var(--primary);
+  color: var(--primary) !important;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.nav-cv:hover {
+  background: var(--primary);
+  color: white !important;
 }
 </style>

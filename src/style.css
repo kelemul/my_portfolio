@@ -77,3 +77,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s transform ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn.outline {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+}
+
+.btn.outline:hover {
+  background: var(--primary);
+  color: white;
+}

@@ -1,14 +1,21 @@
 <script setup>
-defineProps(['title', 'description', 'icon'])
+defineProps(['title', 'description', 'icon', 'project']);
+defineEmits(['click-details']);
 </script>
 
 <template>
   <div class="service-card">
+    
     <div class="icon-wrapper">
       <i :class="icon"></i>
     </div>
     <h3>{{ title }}</h3>
     <p>{{ description }}</p>
+    <div class="overlay">
+       <button @click="$emit('click-details', project)" class="view-btn">
+         <i class="fa-solid fa-eye"></i> Quick View
+       </button>
+    </div>
   </div>
 </template>
 
@@ -65,5 +72,28 @@ p {
   color: var(--text-gray);
   font-size: 0.95rem;
   line-height: 1.6;
+}
+.overlay {
+  margin-top: 1.5rem; /* Space it below the text */
+  opacity: 0; /* Hide by default */
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .overlay {
+  opacity: 1; /* Show on hover */
+}
+
+.view-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
 }
 </style>
