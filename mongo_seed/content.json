@@ -1,0 +1,25 @@
+{
+  "skills": [
+    { "name": "Vue.js", "level": "90%", "icon": "fa-brands fa-vuejs" },
+    { "name": "JavaScript", "level": "85%", "icon": "fa-brands fa-js" },
+    { "name": "Node.js", "level": "80%", "icon": "fa-brands fa-node-js" },
+    { "name": "Tailwind CSS", "level": "95%", "icon": "fa-brands fa-css3-alt" },
+    { "name": "Git & GitHub", "level": "90%", "icon": "fa-brands fa-github" }
+  ],
+  "services": [
+    { "title": "Modular ERP Development", "desc": "Architecting upgrade-safe agricultural and HR workflow systems.", "icon": "fa-solid fa-cubes" }
+  ],
+  "experiences": [],
+  "projects": [],
+  "testimonials": [],
+  "blogPosts": [],
+  "certifications": [],
+  "socialLinks": [],
+  "seo": {},
+  "contactInfo": {
+    "name": "Kelemu Leykun",
+    "email": "kelemu3509@gmail.com",
+    "phone": "+251 923 525 754",
+    "address": "Addis Ababa, Ethiopia"
+  }
+}

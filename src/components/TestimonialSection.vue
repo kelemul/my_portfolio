@@ -1,13 +1,20 @@
 <script setup>
+import { computed } from 'vue';
 import { testimonials } from '../data/portfolioData';
+
+const visibleTestimonials = computed(() => {
+  const list = Array.isArray(testimonials.value) ? testimonials.value : [];
+  return list.filter(t => Number(t?.status) === 1);
+});
 </script>
 
 <template>
   <section id="testimonials" class="section-wrapper">
     <div class="container">
       <h2 class="text-center">Kind Words</h2>
+      <div style="display:flex; justify-content:flex-end; margin-bottom:1rem;"><router-link to="/add-testimonial" class="btn">Add Testimonial</router-link></div>
       <div class="testimonial-grid">
-        <div v-for="t in testimonials" :key="t.id" class="testimonial-card">
+        <div v-for="t in visibleTestimonials" :key="t.id || t.name" class="testimonial-card">
           <div class="quote-icon">“</div>
           <p class="feedback">{{ t.feedback }}</p>
           <div class="user-info">

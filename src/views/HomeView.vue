@@ -6,16 +6,27 @@
   import ExperienceSection from '../components/ExperienceSection.vue';
   import ProjectCard from '../components/ProjectCard.vue';
   import ProjectSearch from '../components/ProjectSearch.vue';
-
+import ContactSection from '../components/ContactSection.vue'; 
+import ProjectModal from '../components/ProjectModal.vue';
+import TestimonialSection from '../components/TestimonialSection.vue';
   const searchQuery = ref('');
 
   const filteredProjects = computed(() => {
     const query = searchQuery.value.toLowerCase();
-    return projects.filter(p => 
-      p.title.toLowerCase().includes(query) ||
-      p.tech.some(t => t.toLowerCase().includes(query))
-    );
+    const list = Array.isArray(projects.value) ? projects.value : [];
+    return list.filter(p => {
+      const title = (p?.title || '').toLowerCase();
+      const tech = Array.isArray(p?.tech) ? p.tech : [];
+      return title.includes(query) || tech.some(t => (t || '').toLowerCase().includes(query));
+    });
   });
+  const selectedProject = ref(null);
+const isModalOpen = ref(false);
+
+const openModal = (project) => {
+  selectedProject.value = project;
+  isModalOpen.value = true;
+};
   </script>
 
   <template>
@@ -24,10 +35,17 @@
         <div class="hero-content">
           <span class="greeting">Welcome to my portfolio</span>
           <h1>Building <span class="highlight">Digital Experiences</span> With Precision</h1>
-          <p>I'm Kelemu Leykun, a Frontend Developer dedicated to creating interactive and user-friendly web applications.</p>
+          <p>I'm Kelemu Leykun, a Full stack developer dedicated to creating interactive and user-friendly web applications, ERP systems, API Development, Backend development and integrations.</p>
           <div class="hero-btns">
             <a href="#projects" class="btn primary">View My Work</a>
             <a href="#contact" class="btn secondary">Hire Me</a>
+            <a 
+                href="/Kelemu_Leykun_CV.pdf" 
+                download="Kelemu_Leykun_CV.pdf" 
+                class="btn outline"
+              >
+                <i class="fa-solid fa-download"></i> Download CV
+              </a>
           </div>
         </div>
       </section>
@@ -37,8 +55,7 @@
       <SkillsSection />
       
       <ExperienceSection />
-      <ServiceSection />
-
+      <ContactSection /> 
 
       <section id="projects" class="section-wrapper">
         <div class="container">
@@ -51,10 +68,11 @@
 
           <div class="project-grid">
             <ProjectCard 
-              v-for="p in filteredProjects" 
-              :key="p.id" 
-              :project="p" 
-            />
+          v-for="p in filteredProjects" 
+          :key="p.id" 
+          :project="p" 
+          @click-details="openModal(p)"
+        />
           </div>
 
           <div v-if="filteredProjects.length === 0" class="no-results">
@@ -62,9 +80,13 @@
             <p>No projects found matching "{{ searchQuery }}"</p>
           </div>
           <TestimonialSection />
-          <ContactSection />
         </div>
       </section>
+      <ProjectModal 
+      :project="selectedProject" 
+      :is-open="isModalOpen" 
+      @close="isModalOpen = false" 
+    />
     </div>
   </template>
 

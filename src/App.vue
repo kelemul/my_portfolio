@@ -11,14 +11,13 @@ import Navbar from './components/Navbar.vue';
         <component :is="Component" />
       </transition>
     </router-view>
-
     <footer class="main-footer">
       <div class="footer-content">
-        <p>&copy; 2026 Kelemu Leykun. Built with Vue 3.</p>
+        <p>&copy; {{ new Date().getFullYear() }} Kelemu Leykun. Built with Vue 3.</p>
         <div class="socials">
-          <a href="#"><i class="fa-brands fa-github"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="https://github.com/kelemul"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/kelemu-leykun/"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://twitter.com/kelemu3509"><i class="fa-brands fa-twitter"></i></a>
         </div>
       </div>
     </footer>
