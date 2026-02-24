@@ -5,16 +5,33 @@ import { contactInfo } from '../data/portfolioData';
 const form = reactive({ name: '', email: '', message: '' });
 const isSending = ref(false);
 const success = ref(false);
+const errorMsg = ref('');
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   isSending.value = true;
-  // Simulate API call
-  setTimeout(() => {
-    isSending.value = false;
+  errorMsg.value = '';
+  success.value = false;
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...form }),
+    });
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data?.error || `Request failed (${res.status})`);
+    }
+
     success.value = true;
     form.name = ''; form.email = ''; form.message = '';
-    setTimeout(() => success.value = false, 5000);
-  }, 1500);
+    setTimeout(() => (success.value = false), 5000);
+  } catch (e) {
+    errorMsg.value = e?.message || 'Failed to send message';
+  } finally {
+    isSending.value = false;
+  }
 };
 </script>
 
@@ -49,6 +66,7 @@ const handleSubmit = () => {
             {{ isSending ? 'Sending...' : 'Send Message' }}
           </button>
           <p v-if="success" class="success-msg">Message sent successfully!</p>
+          <p v-if="errorMsg" class="error-msg">{{ errorMsg }}</p>
         </form>
       </div>
     </div>
@@ -75,6 +93,7 @@ button {
   border: none; border-radius: 8px; font-weight: 700; cursor: pointer;
 }
 .success-msg { color: var(--primary); margin-top: 1rem; text-align: center; }
+.error-msg { color: #b42318; margin-top: 1rem; text-align: center; }
 
 @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
 </style>

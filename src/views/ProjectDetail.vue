@@ -4,14 +4,20 @@ import { useRoute } from 'vue-router';
 import { projects } from '../data/portfolioData';
 
 const route = useRoute();
-const project = computed(() => projects.find(p => p.id === parseInt(route.params.id)));
+const project = computed(() => {
+  const list = Array.isArray(projects.value) ? projects.value : [];
+  const id = Number.parseInt(route.params.id, 10);
+  return list.find(p => p?.id === id);
+});
 
 // Slider Logic
 const currentIndex = ref(0);
 const nextSlide = () => {
+  if (!project.value?.images?.length) return;
   currentIndex.value = (currentIndex.value + 1) % project.value.images.length;
 };
 const prevSlide = () => {
+  if (!project.value?.images?.length) return;
   currentIndex.value = (currentIndex.value - 1 + project.value.images.length) % project.value.images.length;
 };
 

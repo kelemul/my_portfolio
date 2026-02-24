@@ -2,6 +2,7 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { getAdminToken } from '../utils/adminClient'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,7 +17,33 @@ const router = createRouter({
       name: 'project-detail',
       component: () => import('../views/ProjectDetail.vue'), 
       props: true 
-    }
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: () => import('../views/BlogListView.vue'),
+    },
+    {
+      path: '/blog/:slug',
+      name: 'blog-post',
+      component: () => import('../views/BlogPostView.vue'),
+      props: true,
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/AdminView.vue'),
+    },
+    {
+      path: '/admin/login',
+      name: 'admin-login',
+      component: () => import('../views/AdminLogin.vue'),
+    },
+    {
+      path: '/add-testimonial',
+      name: 'add-testimonial',
+      component: () => import('../views/AddTestimonial.vue'),
+    },
     // Note: We removed /contact and /projects routes because they will be SECTIONS on the Home page now.
   ],
   // This function handles the smooth scrolling to #sections
@@ -32,5 +59,12 @@ const router = createRouter({
     return { top: 0 }
   }
 })
+
+router.beforeEach((to, from, next) => {
+  const token = getAdminToken();
+  if (to.name === 'admin' && !token) return next({ name: 'admin-login' });
+  if (to.name === 'admin-login' && token) return next({ name: 'admin' });
+  return next();
+});
 
 export default router

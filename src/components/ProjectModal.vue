@@ -17,20 +17,24 @@ const getImageUrl = (name) => new URL(`../assets/images/${name}`, import.meta.ur
           
           <div class="modal-body">
             <div class="modal-image">
-              <img :src="getImageUrl(project.image)" :alt="project.title" />
+              <img
+                v-if="project?.images?.length"
+                :src="getImageUrl(project.images[0])"
+                :alt="project.title"
+              />
             </div>
             
             <div class="modal-info">
-              <span class="modal-tag">{{ project.tech[0] }}</span>
-              <h2>{{ project.title }}</h2>
-              <p>{{ project.description }}</p>
+              <span v-if="project?.tech?.length" class="modal-tag">{{ project.tech[0] }}</span>
+              <h2>{{ project?.title }}</h2>
+              <p>{{ project?.description }}</p>
               
               <div class="modal-tech-list">
-                <span v-for="t in project.tech" :key="t" class="tech-pill">{{ t }}</span>
+                <span v-for="t in (project?.tech || [])" :key="t" class="tech-pill">{{ t }}</span>
               </div>
 
               <div class="modal-actions">
-                <a :href="project.link" target="_blank" class="btn primary">View Code</a>
+                <a v-if="project?.link" :href="project.link" target="_blank" class="btn primary">View Code</a>
               </div>
             </div>
           </div>

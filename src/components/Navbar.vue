@@ -11,10 +11,13 @@
     </button>
 
     <ul class="nav-links" :class="{ 'active': isMobileMenuOpen }">
-      <li><router-link :to="{ path: '/', hash: '#home' }" @click="closeMenu">Home</router-link></li>
+    <li><router-link :to="{ path: '/', hash: '#home' }" @click="closeMenu">Home</router-link></li>
       <li><router-link :to="{ path: '/', hash: '#services' }" @click="closeMenu">Services</router-link></li>
       <li><router-link :to="{ path: '/', hash: '#skills' }" @click="closeMenu">Skills</router-link></li>
-      <li><router-link :to="{ path: '/', hash: '#projects' }" @click="closeMenu">Projects</router-link></li>
+    <li><router-link :to="{ path: '/', hash: '#projects' }" @click="closeMenu">Projects</router-link></li>
+    <li><router-link :to="{ path: '/', hash: '#testimonials' }" @click="closeMenu">Testimonials</router-link></li>
+      <li><router-link to="/blog" @click="closeMenu">Blog</router-link></li>
+    <li><router-link to="/add-testimonial" @click="closeMenu">Add Testimonial</router-link></li>
       <li><router-link :to="{ path: '/', hash: '#contact' }" @click="closeMenu" class="cta-btn">Contact Me</router-link></li>
     
     <li>

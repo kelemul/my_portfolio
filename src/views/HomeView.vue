@@ -8,20 +8,22 @@
   import ProjectSearch from '../components/ProjectSearch.vue';
 import ContactSection from '../components/ContactSection.vue'; 
 import ProjectModal from '../components/ProjectModal.vue';
+import TestimonialSection from '../components/TestimonialSection.vue';
   const searchQuery = ref('');
 
   const filteredProjects = computed(() => {
     const query = searchQuery.value.toLowerCase();
-    return projects.filter(p => 
-      p.title.toLowerCase().includes(query) ||
-      p.tech.some(t => t.toLowerCase().includes(query))
-    );
+    const list = Array.isArray(projects.value) ? projects.value : [];
+    return list.filter(p => {
+      const title = (p?.title || '').toLowerCase();
+      const tech = Array.isArray(p?.tech) ? p.tech : [];
+      return title.includes(query) || tech.some(t => (t || '').toLowerCase().includes(query));
+    });
   });
   const selectedProject = ref(null);
 const isModalOpen = ref(false);
 
 const openModal = (project) => {
-  selectedProject.ref = project; // Typo fix: selectedProject.value = project
   selectedProject.value = project;
   isModalOpen.value = true;
 };
