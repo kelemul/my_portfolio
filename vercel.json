@@ -13,4 +13,7 @@
       "maxDuration": 10
     }
   }
+  ,"env": {
+    "MONGODB_URI": "@mongo_uri"
+  }
 }
