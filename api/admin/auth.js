@@ -33,27 +33,24 @@ export async function isAuthorized(req) {
 }
 
 export async function validateCredentials(username, password) {
+  // Use MongoDB only. `getDb()` will throw if `MONGODB_URI` is not set.
   const db = await getDb();
   const users = db.collection('users');
-  let user = await users.findOne({ username });
+  const user = await users.findOne({ username });
 
-  // If no dedicated users collection entry exists, check legacy `content` document
+  // If no dedicated users entry, check legacy `content.user` in the DB and migrate
   if (!user) {
     try {
       const contentDoc = await db.collection('content').findOne({});
       const legacy = contentDoc?.user;
       if (legacy && legacy.username === username) {
-        // If legacy password is bcrypt hash, compare it
         if (typeof legacy.password === 'string' && legacy.password.startsWith('$2')) {
           const ok = await bcrypt.compare(password, legacy.password);
           if (ok) {
-            // create users entry from legacy hashed password
             await users.insertOne({ username, password: legacy.password, role: legacy.role || 'admin' });
             return { username, role: legacy.role || 'admin' };
           }
         }
-
-        // If legacy password is plaintext and matches, migrate to users collection with hashed password
         if (legacy.password === password) {
           const hash = await bcrypt.hash(password, 10);
           await users.insertOne({ username, password: hash, role: legacy.role || 'admin' });
@@ -63,18 +60,15 @@ export async function validateCredentials(username, password) {
     } catch (e) {
       console.error('Legacy user lookup failed', e);
     }
-
     return null;
   }
 
-  // If stored password looks like a bcrypt hash, compare using bcrypt
   if (typeof user.password === 'string' && user.password.startsWith('$2')) {
     const ok = await bcrypt.compare(password, user.password);
     if (!ok) return null;
     return { username: user.username, role: user.role || 'admin' };
   }
 
-  // Legacy plaintext password in users collection: migrate to hashed password on successful login
   if (user.password === password) {
     try {
       const hash = await bcrypt.hash(password, 10);

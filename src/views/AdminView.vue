@@ -158,9 +158,18 @@ async function actOnSubmission(action, id) {
         </div>
 
         <div class="auth">
-          <div style="font-weight:700;">Admin</div>
-          <button class="btn" @click="doLogout">Logout</button>
-          <button class="btn" @click="syncFromStore">Refresh editor</button>
+          <template v-if="token">
+            <div style="font-weight:700;">Admin</div>
+            <button class="btn" @click="doLogout">Logout</button>
+            <button class="btn" @click="syncFromStore">Refresh editor</button>
+          </template>
+          <template v-else>
+            <div class="login-form">
+              <input placeholder="username" v-model="username" />
+              <input placeholder="password" v-model="password" type="password" />
+              <button class="btn primary" @click="doLogin">Login</button>
+            </div>
+          </template>
         </div>
       </div>
 
@@ -247,6 +256,10 @@ input {
   border-radius: 10px;
   min-width: 260px;
 }
+.login-form { display:flex; gap:8px; align-items:center; }
+.login-form input { min-width: 140px; }
+.topbar { padding-bottom: 0.5rem; }
+.panel-head h2 { margin: 0; }
 .tabs { display: flex; gap: 0.5rem; margin: 1rem 0 1.25rem; }
 .tabs button {
   border: 1px solid #e5e7eb;

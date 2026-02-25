@@ -8,6 +8,7 @@ import messagesHandler from '../api/admin/messages.js';
 import loginHandler from '../api/admin/login.js';
 import testimonialSubmissionsHandler from '../api/admin/testimonialSubmissions.js';
 import testimonialSubmitHandler from '../api/testimonials/submit.js';
+import testimonialsHandler from '../api/testimonials/index.js';
 
 dotenv.config({ path: new URL('../.env.local', import.meta.url).pathname });
 
@@ -44,6 +45,7 @@ app.post('/api/admin/login', adaptVercel(loginHandler));
 app.get('/api/admin/testimonial_submissions', adaptVercel(testimonialSubmissionsHandler));
 app.post('/api/admin/testimonial_submissions', adaptVercel(testimonialSubmissionsHandler));
 app.post('/api/testimonials/submit', adaptVercel(testimonialSubmitHandler));
+app.get('/api/testimonials', adaptVercel(testimonialsHandler));
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 

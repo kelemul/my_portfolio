@@ -17,7 +17,8 @@ function authHeaders() {
 export async function login(username, password) {
   const res = await fetch('/api/admin/login', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    credentials: 'omit',
     body: JSON.stringify({ username, password }),
   });
 
@@ -38,6 +39,7 @@ export async function updateSection(section, data) {
       'Content-Type': 'application/json',
       ...authHeaders(),
     },
+    credentials: 'omit',
     body: JSON.stringify({ section, data }),
   });
 
@@ -54,6 +56,7 @@ export async function getMessages() {
     headers: {
       ...authHeaders(),
     },
+    credentials: 'omit',
   });
   if (!res.ok) {
     const payload = await res.json().catch(() => ({}));
@@ -63,7 +66,7 @@ export async function getMessages() {
 }
 
 export async function getTestimonialSubmissions() {
-  const res = await fetch('/api/admin/testimonial_submissions', { headers: { ...authHeaders() } });
+  const res = await fetch('/api/admin/testimonial_submissions', { headers: { ...authHeaders(), Accept: 'application/json' }, credentials: 'omit' });
   if (!res.ok) {
     const payload = await res.json().catch(() => ({}));
     throw new Error(payload?.error || `Fetch failed (${res.status})`);
@@ -74,7 +77,8 @@ export async function getTestimonialSubmissions() {
 export async function postTestimonialSubmissionAction(action, id) {
   const res = await fetch('/api/admin/testimonial_submissions', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...authHeaders() },
+    headers: { 'Content-Type': 'application/json', ...authHeaders(), Accept: 'application/json' },
+    credentials: 'omit',
     body: JSON.stringify({ action, id }),
   });
   if (!res.ok) {
