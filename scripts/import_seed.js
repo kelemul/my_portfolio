@@ -1,5 +1,9 @@
 import fs from 'fs/promises';
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
+
+// Load local env vars from .env.local when running the script directly
+dotenv.config({ path: new URL('../.env.local', import.meta.url).pathname });
 
 async function main() {
   const uri = process.env.MONGODB_URI;

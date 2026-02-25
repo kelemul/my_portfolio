@@ -1,25 +1,163 @@
 {
   "skills": [
-    { "name": "Vue.js", "level": "90%", "icon": "fa-brands fa-vuejs" },
-    { "name": "JavaScript", "level": "85%", "icon": "fa-brands fa-js" },
-    { "name": "Node.js", "level": "80%", "icon": "fa-brands fa-node-js" },
-    { "name": "Tailwind CSS", "level": "95%", "icon": "fa-brands fa-css3-alt" },
-    { "name": "Git & GitHub", "level": "90%", "icon": "fa-brands fa-github" }
+    {
+      "name": "Vue.js",
+      "level": "90%",
+      "icon": "fa-brands fa-vuejs"
+    },
+    {
+      "name": "JavaScript",
+      "level": "85%",
+      "icon": "fa-brands fa-js"
+    },
+    {
+      "name": "Node.js",
+      "level": "80%",
+      "icon": "fa-brands fa-node-js"
+    },
+    {
+      "name": "Tailwind CSS",
+      "level": "95%",
+      "icon": "fa-brands fa-css3-alt"
+    },
+    {
+      "name": "Git & GitHub",
+      "level": "90%",
+      "icon": "fa-brands fa-github"
+    }
   ],
   "services": [
-    { "title": "Modular ERP Development", "desc": "Architecting upgrade-safe agricultural and HR workflow systems.", "icon": "fa-solid fa-cubes" }
+    {
+      "title": "Modular ERP Development",
+      "desc": "Architecting upgrade-safe agricultural and HR workflow systems.",
+      "icon": "fa-solid fa-cubes"
+    }
   ],
   "experiences": [],
-  "projects": [],
-  "testimonials": [],
-  "blogPosts": [],
-  "certifications": [],
-  "socialLinks": [],
-  "seo": {},
-  "contactInfo": {
-    "name": "Kelemu Leykun",
-    "email": "kelemu3509@gmail.com",
-    "phone": "+251 923 525 754",
-    "address": "Addis Ababa, Ethiopia"
-  }
-}
+  "projects": [
+    {
+      "title": "my pproj",
+      "description": "khfuifg whfigf",
+      "link": "hiufgeygf",
+      "tech": [
+        "vuejsphp"
+      ],
+      "tags": [
+        "vuejsphp"
+      {
+        "_id": { "$oid": "6996d0c41add9ee4dad3d43e" },
+        "skills": [
+          { "name": "Vue.js", "level": "90%", "icon": "fa-brands fa-vuejs" },
+          { "name": "JavaScript", "level": "85%", "icon": "fa-brands fa-js" },
+          { "name": "Node.js", "level": "80%", "icon": "fa-brands fa-node-js" },
+          { "name": "Tailwind CSS", "level": "95%", "icon": "fa-brands fa-css3-alt" },
+          { "name": "Git & GitHub", "level": "90%", "icon": "fa-brands fa-github" },
+          { "name": "Laravel", "level": "85%", "icon": "fa-brands fa-laravel" },
+          { "name": "Django", "level": "80%", "icon": "fa-brands fa-python" },
+          { "name": "Frappe/ERPNext", "level": "88%", "icon": "fa-solid fa-database" },
+          { "name": "Data Science", "level": "75%", "icon": "fa-solid fa-chart-line" },
+          { "name": "Python (PyInstaller, XML Parsing)", "level": "92%", "icon": "fa-brands fa-python" },
+          { "name": "Bootstrap & Custom UI Design", "level": "90%", "icon": "fa-brands fa-bootstrap" },
+          { "name": "System Architecture & Schema Design", "level": "95%", "icon": "fa-solid fa-sitemap" }
+        ],
+        "services": [
+          { "title": "Modular ERP Development", "desc": "Architecting upgrade-safe agricultural and HR workflow systems with schema-driven clarity.", "icon": "fa-solid fa-cubes" },
+          { "title": "Custom UI/UX Designers", "desc": "Building drag-and-drop UI designers bridging XML and JSON for ERP systems like Odoo.", "icon": "fa-solid fa-object-group" },
+          { "title": "Cross-Platform App Packaging", "desc": "Packaging Python apps with PyInstaller and scripting installers with Inno Setup, including publisher metadata and firewall exceptions.", "icon": "fa-solid fa-box" },
+          { "title": "Operational Dashboards", "desc": "Designing actionable, visually clear dashboards for machinery, field management, and harvesting schemes.", "icon": "fa-solid fa-chart-pie" },
+          { "title": "System Troubleshooting", "desc": "Resolving Linux library dependencies, frontend rendering issues, and backend integration challenges.", "icon": "fa-solid fa-screwdriver-wrench" }
+        ],
+        "experiences": [
+          { "id": 1, "title": "App Developer & Systems Architect", "company": "Guba Technologies", "year": "2020 - Present", "desc": "Specializing in modular, upgrade-safe agricultural and HR workflow systems. Driving schema design, report scaffolding, and operational clarity across all modules." },
+          { "id": 2, "title": "ERP & Workflow Systems Engineer", "company": "Independent Projects", "year": "2017 - 2020", "desc": "Architected custom ERP modules, drag-and-drop UI designers, and schema-aligned reporting pipelines for institutional learning." },
+          { "id": 3, "title": "Software Developer", "company": "Freelance", "year": "2015 - 2017", "desc": "Delivered cross-platform apps, professional installers, and customized dashboards for small businesses and startups." }
+        ],
+        "projects": [
+          {
+            "id": 1,
+            "title": "Grade Automation Pro",
+            "description": "A professional-grade automated school grading system with robust cross-platform packaging.",
+            "images": ["grade.jpg","grade1.jpg","grade2.jpg"],
+            "tech": ["Python","PyInstaller","Inno Setup"],
+            "link": "https://github.com/kelemul/grade-automation-pro",
+            "tags": ["Python","Installer","Cross-Platform"],
+            "details": [
+              { "subtitle": "The Challenge", "text": "School environments often lack internet connectivity and have strict security protocols. The goal was to build a Python-based system that could be distributed as a standalone, secure executable." },
+              { "subtitle": "Technical Implementation", "text": "I utilized PyInstaller for binary compilation and Inno Setup for a professional Windows installer. This included embedding publisher metadata and automatically configuring Windows Firewall exceptions." },
+              { "subtitle": "Linux Adaptation", "text": "The entire workflow was adapted for Linux environments, resolving complex library dependencies and path redirects for cross-distro compatibility." }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "TELE POS Integration",
+            "description": "Optimized Vue frontend with Vite-based standalone integrated with Frappe ERP systems, resulting in a lightning-fast POS interface.",
+            "images": ["pos.jpg","pos1.jpg","pos2.jpg"],
+            "tech": ["Vue","Vite","Tailwind","Frappe","ERPNext","Python"],
+            "link": "https://github.com/kelemul/posawesome",
+            "tags": ["Vue","Vite","Tailwind","Frappe","ERPNext","Python"],
+            "details": [
+              { "subtitle": "Vite Configuration Optimization", "text": "The project involved troubleshooting Vite asset redirects to enable a completely standalone frontend build that could run independent of a traditional web server." },
+              { "subtitle": "Frontend Architecture", "text": "Using Tailwind CSS for a utility-first design, I ensured the POS interface remains responsive and high-contrast for fast-paced retail environments." }
+            ]
+          },
+          {
+            "id": 3,
+            "title": "Odoo Drag-and-Drop Designer",
+            "description": "A specialized UI designer for ERP components that bridges the gap between visual design and XML/JSON schemas.",
+            "images": ["odoo.jpg","odoo1.jpg","odoo2.jpg"],
+            "tech": ["JS","Bootstrap","Python","XML"],
+            "link": "https://github.com/kelemul/odoo-designer",
+            "tags": ["ERP","UI Designer","XML","Python"],
+            "details": [
+              { "subtitle": "Bridging XML and JSON", "text": "ERP systems like Odoo rely heavily on XML for view definitions. I architected a drag-and-drop system that allows designers to work in JSON-based UI components which are then accurately mapped to Odoo-compliant XML." }
+            ]
+          },
+          {
+            "id": 4,
+            "title": "Agricultural Operations Management",
+            "description": "Operational hub for managing field machinery, harvesting logistics, and logistics planning.",
+            "images": ["agri.jpg","agri1.jpg","agri2.jpg"],
+            "tech": ["ERPNext","Frappe","Python","MySQL","Chart.js"],
+            "link": "https://github.com/kelemul/agri-dashboard",
+            "tags": ["ERPNext","Data Visualization","Agriculture","Python","MySQL","ERP","Frappe"],
+            "details": [
+              { "subtitle": "Operational Clarity", "text": "Agricultural management requires tracking real-time data from the field. I designed this dashboard to provide clear visibility into machinery utilization and harvesting schedules." }
+            ]
+          },
+          {
+            "id": 5,
+            "title": "MyMalefia web application",
+            "description": "A web application designed to facilitate communication and resource sharing between higher education institutions and students.",
+            "images": ["My_malefia.jpg","My_malefia1.jpg","My_malefia2.jpg"],
+            "tech": ["Laravel","Bootstrap","Node.js","MySQL"],
+            "link": "https://github.com/kelemul/mymalefia",
+            "tags": ["Laravel","Bootstrap","Node.js","MySQL"],
+            "details": [
+              { "subtitle": "Bridging Institutions and Students", "text": "MyMalefia was designed to create a seamless communication channel between higher education institutions and students." }
+            ]
+          }
+        ],
+        "testimonials": [
+          { "id": 1, "name": "Samuel Bekele", "feedback": "Kelemu’s schema-driven approach transformed our agricultural reporting.", "designation": "Operations Manager at Guba Technologies", "image": "samuel.jpg" }
+        ],
+        "contactInfo": {
+          "name": "Kelemu Leykun",
+          "email": "kelemu3509@gmail.com",
+          "phone": "+251 923 525 754",
+          "address": "Addis Ababa, Ethiopia",
+          "github": "kelemul",
+          "telegram": "@keller_lee_cent"
+        },
+        "blogPosts": [
+          { "id": "post-001", "status": "published", "slug": "schema-driven-systems", "title": "Schema-driven systems that don’t break on upgrades", "excerpt": "How to design upgrade-safe modules with stable contracts and clean migrations.", "tags": ["Architecture","ERP","Schema"], "coverImage": "blog-schema.jpg", "publishedAt": "2026-02-24T00:00:00.000Z", "updatedAt": "2026-02-24T00:00:00.000Z", "readingTimeMinutes": 6, "contentHtml": "<p>Write HTML here (fastest path).</p>", "contentMarkdown": "" }
+        ],
+        "certifications": [
+          { "id": "cert-001", "title": "ERPNext / Frappe Framework", "issuer": "Self / Company / Platform", "date": "2025-08-01", "credentialId": "", "credentialUrl": "", "tags": ["ERP","Frappe"] }
+        ],
+        "socialLinks": [
+          { "name": "GitHub", "url": "https://github.com/kelemul", "icon": "fa-brands fa-github" },
+          { "name": "LinkedIn", "url": "https://www.linkedin.com/in/kelemu-leykun/", "icon": "fa-brands fa-linkedin" }
+        ],
+        "seo": { "siteName": "Kelemu Leykun", "title": "Full Stack Developer Portfolio", "description": "Full stack developer focused on Vue, backend integrations, and ERP systems.", "ogImage": "og.jpg" },
+        "user": { "username": "admin", "password": "$2a$10$9TDccaUdnKEDN1lyENZFNuTs1CWV5fPGp9w/aEgshHdAlgkQ7zG7i", "role": "admin" }
+      }

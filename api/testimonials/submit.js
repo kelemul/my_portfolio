@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   try {
     const db = await getDb();
-    const coll = db.collection('testimonial_submissions');
+    const coll = db.collection('testimonials');
     const doc = { name, feedback, designation: designation || '', image: image || '', createdAt: new Date(), status: 0 };
     const r = await coll.insertOne(doc);
     return res.status(200).json({ success: true, id: r.insertedId });

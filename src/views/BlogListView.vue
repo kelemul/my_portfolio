@@ -15,9 +15,11 @@ const posts = computed(() => {
   <div class="page">
     <div class="container">
       <div class="header">
-        <h1>Blog</h1>
-        <p>Notes on engineering, architecture, and building systems that scale.</p>
-      </div>
+        <h1>Blog Posts</h1>
+        <p>
+         This page is about thoughts regarding technologies and their impact on the world, as well as updates about state of the art systems, technological solutions, and businesses in the tech industry. It also serves as a platform to share insights, experiences, and knowledge about various tech topics, fostering a community of like-minded individuals passionate about technology.
+        </p>
+     </div>
 
       <div v-if="isLoading" class="muted">Loading…</div>
       <div v-else class="grid">

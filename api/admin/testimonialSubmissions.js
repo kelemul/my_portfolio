@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     const ok = await isAuthorized(req);
     if (!ok) return res.status(401).json({ error: 'Unauthorized' });
-    const subs = await db.collection('testimonial_submissions').find({}).sort({ createdAt: -1 }).toArray();
+    const subs = await db.collection('testimonials').find({}).sort({ createdAt: -1 }).toArray();
     return res.status(200).json(subs);
   }
 
@@ -19,14 +19,13 @@ export default async function handler(req, res) {
     if (!action || !id) return res.status(400).json({ error: 'action and id required' });
 
     try {
-      const submissions = db.collection('testimonial_submissions');
+      const submissions = db.collection('testimonials');
       if (action === 'approve') {
         const doc = await submissions.findOne({ _id: new ObjectId(id) });
         if (!doc) return res.status(404).json({ error: 'Not found' });
-        // push into content.testimonials with numeric status
-        const content = db.collection('content');
-        const testimonial = { name: doc.name, feedback: doc.feedback, designation: doc.designation || '', image: doc.image || '', status: 1 };
-        await content.updateOne({}, { $push: { testimonials: testimonial } }, { upsert: true });
+        // insert into dedicated 'testimonials' collection (approved)
+        const testimonial = { name: doc.name, feedback: doc.feedback, designation: doc.designation || '', image: doc.image || '', status: 1, createdAt: new Date() };
+        await db.collection('testimonials').insertOne(testimonial);
         await submissions.deleteOne({ _id: new ObjectId(id) });
         return res.status(200).json({ success: true });
       }

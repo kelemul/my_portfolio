@@ -26,11 +26,11 @@ export const isLoading = ref(true);
 export const initPortfolio = async () => {
     try {
         // In production (Vercel), `/api/*` is handled by serverless functions.
-        // In local dev with Vite, you typically run `vercel dev` (default :3000)
-        // or provide `VITE_API_BASE` to point at your API server.
-        const apiBase =
-          import.meta.env.VITE_API_BASE ??
-          (import.meta.env.DEV ? 'http://localhost:3000' : '');
+        // For local dev, prefer same-origin (empty `apiBase`) so requests go to
+        // the dev server origin (e.g. http://localhost:5173) which may proxy
+        // `/api/*` to your API. If your API runs on a different port, set
+        // `VITE_API_BASE` to the full origin (e.g. http://localhost:3000).
+        const apiBase = import.meta.env.VITE_API_BASE ?? '';
 
         const url = `${apiBase}/api/getPortfolio`;
         const res = await fetch(url);

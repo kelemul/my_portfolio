@@ -1,6 +1,75 @@
 <script setup>
-import { computed } from 'vue';
-import { testimonials } from '../data/portfolioData';
+import { ref, computed, onMounted } from 'vue';
+
+const testimonials = ref([]);
+const load = async () => {
+  const apiBase = import.meta.env.VITE_API_BASE ?? '';
+  const url = `${apiBase}/api/testimonials`;
+  try {
+    const res = await fetch(url, { headers: { Accept: 'application/json' }, credentials: 'omit' });
+    if (!res.ok) {
+      const txt = await res.text().catch(() => '');
+      console.warn('testimonials fetch failed (primary)', url, res.status, txt.slice ? txt.slice(0, 200) : txt);
+      // Try explicit localhost:3000 backend when dev server proxies are misconfigured
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        const alt = `http://localhost:3000/api/testimonials`;
+        try {
+          const r2 = await fetch(alt, { headers: { Accept: 'application/json' }, credentials: 'omit' });
+          if (r2.ok && (r2.headers.get('content-type') || '').toLowerCase().includes('application/json')) {
+            testimonials.value = await r2.json();
+            return;
+          }
+          const t2 = await r2.text().catch(() => '');
+          console.warn('alt testimonials fetch failed', alt, r2.status, t2.slice ? t2.slice(0,200) : t2);
+        } catch (e2) {
+          console.warn('alt testimonials fetch error', e2);
+        }
+      }
+      throw new Error(`Failed to load testimonials (${res.status})`);
+    }
+    const contentType = (res.headers.get && res.headers.get('content-type') || '').toLowerCase();
+    if (!contentType.includes('application/json')) {
+      const txt = await res.text().catch(() => '');
+      console.warn('testimonials primary returned non-json', url, contentType, txt.slice ? txt.slice(0,200) : txt);
+      // try localhost backend as well
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        const alt = `http://localhost:3000/api/testimonials`;
+        try {
+          const r2 = await fetch(alt, { headers: { Accept: 'application/json' }, credentials: 'omit' });
+          if (r2.ok && (r2.headers.get('content-type') || '').toLowerCase().includes('application/json')) {
+            testimonials.value = await r2.json();
+            return;
+          }
+        } catch (e2) {
+          console.warn('alt testimonials fetch error', e2);
+        }
+      }
+      throw new Error(`Expected JSON from ${url} but got "${contentType}"`);
+    }
+    const data = await res.json();
+    testimonials.value = Array.isArray(data) ? data : [];
+    return;
+  } catch (e) {
+    console.error('load testimonials error', e);
+  }
+
+  // Fallback: try the main getPortfolio endpoint and read its testimonials field
+  try {
+    const apiBase = import.meta.env.VITE_API_BASE ?? '';
+    const res2 = await fetch(`${apiBase}/api/getPortfolio`, { headers: { Accept: 'application/json' }, credentials: 'omit' });
+    if (res2.ok) {
+      const d = await res2.json();
+      testimonials.value = Array.isArray(d.testimonials) ? d.testimonials : [];
+      return;
+    }
+  } catch (e2) {
+    console.error('fallback getPortfolio failed', e2);
+  }
+
+  testimonials.value = [];
+};
+
+onMounted(() => { load(); });
 
 const visibleTestimonials = computed(() => {
   const list = Array.isArray(testimonials.value) ? testimonials.value : [];
