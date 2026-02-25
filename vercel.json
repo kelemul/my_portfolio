@@ -7,13 +7,7 @@
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1.js" }
   ],
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 10
-    }
-  }
-  ,"env": {
+  "env": {
     "MONGODB_URI": "@mongo_uri"
   }
 }
