@@ -47,6 +47,18 @@ app.post('/api/testimonials/submit', adaptVercel(testimonialSubmitHandler));
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
+// In production, serve the built client from `dist` and fallback to index.html
+if (process.env.NODE_ENV === 'production') {
+  const path = new URL('../dist', import.meta.url).pathname;
+  const indexHtml = new URL('../dist/index.html', import.meta.url).pathname;
+  app.use(express.static(path));
+
+  // Serve index.html for any non-API route (SPA fallback)
+  app.get(/^((?!\/api).)*$/, (req, res) => {
+    res.sendFile(indexHtml);
+  });
+}
+
 const port = Number(process.env.PORT || 3000);
 app.listen(port, () => {
   console.log(`API server listening on http://localhost:${port}`);
