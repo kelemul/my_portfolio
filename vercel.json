@@ -6,8 +6,6 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1.js" }
-  ],
-  "env": {
-    "MONGODB_URI": "@mongo_uri"
-  }
+  ]
+  
 }
