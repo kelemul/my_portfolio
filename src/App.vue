@@ -1,5 +1,6 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
+import { Analytics } from '@vercel/analytics/vue';
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import Navbar from './components/Navbar.vue';
         <component :is="Component" />
       </transition>
     </router-view>
+    <Analytics />
     <footer class="main-footer">
       <div class="footer-content">
         <p>&copy; {{ new Date().getFullYear() }} Kelemu Leykun. Built with Vue 3.</p>
