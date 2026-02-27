@@ -1,9 +1,11 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
+import { Analytics } from '@vercel/analytics/vue';
 </script>
 
 <template>
   <div id="app-layout">
+    <Analytics />
     <Navbar />
     
     <router-view v-slot="{ Component }">
