@@ -40,8 +40,8 @@ const openModal = (project) => {
             <a href="#projects" class="btn primary">View My Work</a>
             <a href="#contact" class="btn secondary">Hire Me</a>
             <a 
-                href="/Kelemu_Leykun_CV.pdf" 
-                download="Kelemu_Leykun_CV.pdf" 
+                href="/kelem_CV.pdf" 
+                download="kelem_CV.pdf" 
                 class="btn outline"
               >
                 <i class="fa-solid fa-download"></i> Download CV

@@ -21,7 +21,7 @@
       <li><router-link :to="{ path: '/', hash: '#contact' }" @click="closeMenu" class="cta-btn">Contact Me</router-link></li>
     
     <li>
-    <a href="/Kelemu_Leykun_CV.pdf" download class="nav-cv">CV</a>
+    <a href="/kelem_CV.pdf" download class="nav-cv">CV</a>
   </li>
     </ul>
   </nav>
